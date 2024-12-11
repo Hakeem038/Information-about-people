@@ -135,22 +135,30 @@
         };
 
         // Function to handle button click
-        function fetchData() {
-            const dob = document.getElementById("dob").value.trim();
-            const result = document.getElementById("result");
+       function fetchData() {
+    const dob = document.getElementById("dob").value.trim();
+    const result = document.getElementById("result");
 
-            if (data[dob]) {
-                result.innerHTML = `
-                    <strong>Assalamualaikum!</strong><br>
-                    <div style="margin-top: 10px;">
-                        <div><strong>Your Name is:</strong> ${data[dob].name}</div>
-                        <div><strong>Your Location is:</strong> ${data[dob].location}</div>
-                    </div>
-                `;
-            } else {
-                result.innerHTML = `<strong>No data found</strong> for the entered DOB.`;
-            }
+    if (data[dob]) {
+        let additionalInfo = '';
+        // Check for and add additional fields if they exist
+        if (data[dob].father_name) {
+            additionalInfo += `<div><strong>Father's Name:</strong> ${data[dob].father_name}</div>`;
         }
+        // You can add more fields like this if necessary.
+   
+        result.innerHTML = `
+            <strong>Assalamualaikum!</strong><br>
+            <div style="margin-top: 10px;">
+                <div><strong>Your Name is:</strong> ${data[dob].name}</div>
+                <div><strong>Your Location is:</strong> ${data[dob].location}</div>
+                ${additionalInfo} <!-- Display additional info if present -->
+            </div>
+        `;
+    } else {
+        result.innerHTML = `<strong>No data found</strong> for the entered DOB.`;
+    }
+}
 
         // Function to handle Enter key press
         function checkEnter(event) {
