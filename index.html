@@ -88,7 +88,7 @@
     <div class="container">
         <h1>DOB Finder</h1>
         <label for="dob">Enter DOB (dd/mm/yyyy):</label>
-        <input type="text" id="dob" placeholder="e.g., 22/03/2007" onkeydown="checkEnter(event)">
+        <input type="text" id="dob" placeholder="Enter your Date of birth" onkeydown="checkEnter(event)">
         <button onclick="fetchData()">Search</button>
         <div id="result"></div>
     </div>
@@ -144,6 +144,7 @@
                     <div style="margin-top: 10px;">
                         <div><strong>Your Name is:</strong> ${data[dob].name}</div>
                         <div><strong>Your Location is:</strong> ${data[dob].location}</div>
+                        <div><strong>Your Father Name is:</strong> ${data[dob].father_name}</div>
                     </div>
                 `;
             } else {
