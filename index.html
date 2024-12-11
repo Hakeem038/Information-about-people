@@ -86,7 +86,7 @@
 </head>
 <body>
     <div class="container">
-        <h1>DOB Finder</h1>
+        <h1>Fetch Your Details by DOB</h1>
         <label for="dob">Enter DOB (dd/mm/yyyy):</label>
         <label for="dob"> Note:Enter in // format only:</label>
         <input type="text" id="dob" placeholder="Enter your Date of birth" onkeydown="checkEnter(event)">
@@ -145,7 +145,6 @@
                     <div style="margin-top: 10px;">
                         <div><strong>Your Name is:</strong> ${data[dob].name}</div>
                         <div><strong>Your Location is:</strong> ${data[dob].location}</div>
-                        <div><strong>Your Father Name is:</strong> ${data[dob].father_name}</div>
                     </div>
                 `;
             } else {
