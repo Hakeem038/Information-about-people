@@ -13,6 +13,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      flex-direction: column;
       min-height: 100vh;
       padding: 20px;
     }
@@ -23,7 +24,7 @@
       box-shadow: 0 8px 30px rgba(0,0,0,0.5);
       padding: 30px;
       width: 100%;
-      max-width: 500px;
+      max-width: 550px;
       text-align: center;
       animation: fadeIn 1s ease;
     }
@@ -31,12 +32,12 @@
     h1 {
       color: #4caf50;
       font-size: 2rem;
-      margin-bottom: 15px;
+      margin-bottom: 10px;
     }
 
     label {
       display: block;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
       color: #ccc;
     }
 
@@ -50,11 +51,6 @@
       background: #2a2a3d;
       color: #fff;
       text-align: center;
-    }
-
-    input:focus {
-      outline: none;
-      border-color: #4caf50;
     }
 
     .buttons {
@@ -78,17 +74,9 @@
       color: white;
     }
 
-    .search-btn:hover {
-      background: #388e3c;
-    }
-
     .clear-btn {
       background: #ff5252;
       color: white;
-    }
-
-    .clear-btn:hover {
-      background: #c62828;
     }
 
     #result {
@@ -99,33 +87,23 @@
       display: none;
     }
 
-    .spinner {
-      border: 4px solid #eee;
-      border-top: 4px solid #4caf50;
-      border-radius: 50%;
-      width: 30px;
-      height: 30px;
-      animation: spin 1s linear infinite;
-      margin: 0 auto;
+    .passport-photo {
+      margin-top: 10px;
+      max-width: 100px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(255,255,255,0.1);
     }
 
-    @keyframes spin {
-      to { transform: rotate(360deg); }
+    .footer {
+      margin-top: 20px;
+      text-align: center;
+      color: #888;
+      font-size: 0.9rem;
     }
 
     @keyframes fadeIn {
       from { opacity: 0; transform: scale(0.95); }
       to { opacity: 1; transform: scale(1); }
-    }
-
-    @media (max-width: 480px) {
-      h1 {
-        font-size: 1.5rem;
-      }
-
-      button {
-        font-size: 0.9rem;
-      }
     }
   </style>
 </head>
@@ -141,79 +119,79 @@
     <div id="result"></div>
   </div>
 
+  <div class="footer">This website is designed by Syed Abdul Hakeem</div>
+
   <script>
     const data = {
-      "20/10/1981": { name: "Naseema Begum", location: "Tadbun", father_name: "Syed Abdul Rab Rabbani"},
-      "14/04/1982": { name: "Syed Abdul Haq Haqaqani", location: "Falaknuma", father_name: "Syed Abdul Rab Rabbani"},
-      "19/01/1985": { name: "Amatul Aleem", location: "Rajendernagar", father_name: "Syed Abdul Rab Rabbani"},
-       "19/01/1986": { name: "Amatul Azeem", location: "Pahadi Shareef",  father_name: "Syed Abdul Rab Rabbani"},
-            "20/07/1987": { name: "Nazema Begum", location: "Pisal Banda",  father_name: "Syed Abdul Rab Rabbani"},
-            "23/12/1988": { name: "Syed Abdul Subhan Subhani", location: "Jeddah",  father_name: "Syed Abdul Rab Rabbani"},
-            "30/09/1992": { name: "Amatul Kareem", location: "Sahethnagar",  father_name: "Syed Abdul Rab Rabbani"},
-            "25/03/1995": { name: "Amatul Hakeem", location: "Tadbun",  father_name: "Syed Abdul Rab Rabbani"},
-            "07/04/1996": { name: "Syed Abdul Samad", location: "Falaknuma",  father_name: "Syed Abdul Rab Rabbani" }, 
-            "22/03/2007": { name: "SYED ABDUL HAKEEM", location: "Tadbun", father_name: "Syed Ishaque", mother_name: "Naseema Begum", Gender: "Male", Mobile_Number: "9966270012"},
-            "18/02/2014": { name: "SYED ABDUL HAFEEZ", location: "Tadbun" ,  father_name: "Syed Ishaque"},
-            "04/09/2003": { name: "MOHAMMED SAJID", location: "Tigal Kunta",  father_name: "Akhlaq Ahmed" },
-            "18/05/2006": { name: "MOHAMMED SAQIB", location: "Tigal Kunta" , father_name: "Akhlaq Ahmed"},
-            "18/07/2008": { name: "MOHAMMED SHAHID", location: "Tigal Kunta", father_name: "Akhlaq Ahmed" },
-            "18/10/2018": { name: "MOHAMMED ZAHID", location: "Tigal Kunta", father_name: "Akhlaq Ahmed" },
-            "13/01/2020": { name: "MOHAMMED SADIQ ANAS", location: "Tigal Kunta", father_name: "Akhlaq Ahmed" },
-            "10/09/2011": { name: "AMATULLAH HAFSA", location: "Rajendernagar", father_name: "Abdul Khaliq" },
-            "24/08/2014": { name: "ABUBAKER SIDDIQUE", location: "Rajendernagar", father_name: "Abdul Khaliq" },
-            "18/08/2016": { name: "AMATULLAH SAJIDA ASMA", location: "Rajendernagar", father_name: "Abdul Khaliq" },
-            "26/11/2019": { name: "AMATULLAH SARA", location: "Rajendernagar", father_name: "Abdul Khaliq" },
-            "04/01/2019": { name: "ABDUL ALEEM", location: "Pahadi sharif", father_name: "Abdul Gaffor" },
-            "28/03/2023": { name: "AMENA TAHURA", location: "Pahadi sharif", father_name: "Abdul Gaffor" }, 
-            "19/05/2009": { name: "ABDUL MALIK KHAN", location: "Kanchan Bagh", father_name: "Akram Khan" },
-            "10/04/2011": { name: "NADIRA KHANAM", location: "Kanchan Bagh", father_name: "Akram Khan" }, 
-            "06/12/2013": { name: "ABDUL MANNAN KHAN", location: "Kanchan Bagh", father_name: "Akram Khan" },
-            "11/04/2016": { name: "ABDUL HANNAN KHAN", location: "Kanchan Bagh", father_name: "Akram Khan" },
-            "23/06/2022": { name: "NAIRA KHANAM", location: "Kanchan Bagh", father_name: "Akram Khan" },
-            "08/04/2014": { name: "MOHAMMED HAMZA ZAKIR", location: "Saheth nagar", father_name: "Mohammed Zakiruddin" },
-            "07/03/2017": { name: "MOHAMMED UMAR ZAKIR", location: "Saheth nagar", father_name: "Mohammed Zakiruddin" },
-            "14/03/2019": { name: "SUMAYYA ZAKIR", location: "Saheth nagar", father_name: "Mohammed Zakiruddin" },
-            "16/10/2019": { name: "ABDUL WAHID", location: "Tadbun", father_name: "Abdul Wahab" },
-            "13/05/2021": { name: "KHADIJA FATHIMA", location: "Tadbun", father_name: "Abdul Wahab" },
-            "10/11/2024": { name: "ABDUL WAJID", location: "Tadbun", father_name: "Abdul Wahab" },
-            "23/08/2013": { name: "AMATUR RAHEEM MARYAM", location: "Falaknuma", father_name: " Syed Abdul Haq Haqqani" },
-            "16/06/2016": { name: "SYED ABDULLAH", location: "Falaknuma", father_name: " Syed Abdul Haq Haqqani" },
-            "03/08/2020": { name: "SYED MOHAMMED SULEMAN", location: "Falaknuma", father_name: " Syed Abdul Haq Haqqani" },
-            "08/01/2024": { name: "ABDUL RAB AHMED", location: "Falaknuma", father_name: " Syed Abdul Haq Haqqani" },
-            "05/07/2023": { name: "AMATULLAH ANABIYA", location: "Jeddah", father_name: " Syed Abdul Subhan Subhani" },
-            "09/01/2022": { name: "AMATULLAH AYESHA", location: "Falaknuma", father_name: " Syed Abdul Rahman Rahmani" },
-            "01/10/2023": { name: "SYED ABDUL AHAD", location: "Falaknuma", father_name: " Syed Abdul Samad " }
-        };
-      // ... (include your full data object here)
+      "22/03/2007": {
+        name: "Syed Abdul Hakeem",
+        location: "Tadbun",
+        father_name: "Syed Ishaque",
+        mother_name: "Naseema Begum",
+        gender: "Male",
+        mobile: "9966270012",
+        signature: "Ahakeem",
+        //photo: "https://via.placeholder.com/100"
+      },
+      "14/02/2014": {
+        name: "Syed Abdul Hafeez",
+        location: "Tadbun",
+        father_name: "Syed Ishaque",
+        mother_name: "Naseema Begum",
+        gender: "Male",
+        mobile: "9100271633",
+        signature: "",
+        photo: ""
+      },
+      "04/09/2003": {
+        name: "Mohammed Sajid",
+        location: "Dubai",
+        father_name: "Akhlaq Ahmed",
+        mother_name: "Amatul Aziz",
+        gender: "Male",
+        mobile: "703277686",
+        signature: "",
+        photo: ""
+      },
+      "18/05/2006": {
+        name: "Mohammed Saqib",
+        location: "Tigal Kunta",
+        father_name: "Akhlaq Ahmed",
+        mother_name: "Amatul Aziz",
+        gender: "Male",
+        mobile: "7799996222",
+        signature: "",
+        photo: ""
+      }
+      // Add more family members here
     };
 
     function fetchData() {
       const dob = document.getElementById("dob").value.trim();
       const result = document.getElementById("result");
 
-      result.style.display = "block";
-      result.innerHTML = '<div class="spinner"></div>';
-
-      setTimeout(() => {
-        if (data[dob]) {
-          const { name, location, father_name, mother_name } = data[dob];
-          result.innerHTML = `
-            <strong>Assalamualaikum!</strong><br><br>
-            <div><strong>Your Name:</strong> ${name}</div>
-            <div><strong>Location:</strong> ${location}</div>
-            ${father_name ? `<div><strong>Father's Name:</strong> ${father_name}</div>` : ""}
-            ${mother_name ? `<div><strong>Mother's Name:</strong> ${mother_name}</div>` : ""}
-          `;
-        } else {
-          result.innerHTML = `<strong style="color: #ff5c5c;">No record found for the entered DOB.</strong>`;
-        }
-      }, 800); // simulate delay
+      if (data[dob]) {
+        const { name, location, father_name, mother_name, gender, mobile, signature, photo } = data[dob];
+        result.style.display = "block";
+        result.innerHTML = `
+          <strong>Assalamualaikum! This website is designed by Syed Abdul Hakeem.</strong><br><br>
+          <div><strong>Name:</strong> ${name}</div>
+          <div><strong>Location:</strong> ${location}</div>
+          ${father_name ? `<div><strong>Father's Name:</strong> ${father_name}</div>` : ""}
+          ${mother_name ? `<div><strong>Mother's Name:</strong> ${mother_name}</div>` : ""}
+          ${gender ? `<div><strong>Gender:</strong> ${gender}</div>` : ""}
+          ${mobile ? `<div><strong>Mobile:</strong> ${mobile}</div>` : ""}
+          ${signature ? `<div><strong>Signature:</strong> ${signature}</div>` : ""}
+          ${photo ? `<img src="${photo}" alt="Passport Photo" class="passport-photo">` : ""}
+        `;
+      } else {
+        result.style.display = "block";
+        result.innerHTML = `<strong style="color: #ff5c5c;">No record found for the entered DOB.</strong>`;
+      }
     }
 
     function checkEnter(event) {
-      if (event.key === "Enter") {
-        fetchData();
-      }
+      if (event.key === "Enter") fetchData();
     }
 
     function clearResult() {
