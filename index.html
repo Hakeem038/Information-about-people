@@ -1,176 +1,200 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DOB Finder</title>
-    <style>
-        /* General Styling */
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Arial', sans-serif;
-            background: #1e1e2f;
-            color: #f4f4f9;
-        }
-        
-        .container {
-            max-width: 600px;
-            margin: 5% auto;
-            padding: 20px;
-            background: #29293d;
-            border-radius: 10px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
-            text-align: center;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>DOB Finder</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #121212;
+      color: #f0f0f0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
 
-        h1 {
-            font-size: 2rem;
-            color: #4caf50;
-            margin-bottom: 20px;
-        }
+    .container {
+      background: #1f1f2e;
+      border-radius: 12px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.5);
+      padding: 30px;
+      width: 100%;
+      max-width: 500px;
+      text-align: center;
+      animation: fadeIn 1s ease;
+    }
 
-        label {
-            font-size: 1rem;
-            margin-bottom: 10px;
-            display: block;
-            color: #bbb;
-        }
+    h1 {
+      color: #4caf50;
+      font-size: 2rem;
+      margin-bottom: 15px;
+    }
 
-        input {
-            width: 100%;
-            padding: 10px;
-            font-size: 1rem;
-            border: 1px solid #555;
-            border-radius: 5px;
-            margin-bottom: 20px;
-            background: #333;
-            color: #fff;
-        }
+    label {
+      display: block;
+      margin-bottom: 8px;
+      color: #ccc;
+    }
 
-        input:focus {
-            outline: none;
-            border-color: #4caf50;
-        }
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      font-size: 1rem;
+      border: 1px solid #444;
+      border-radius: 5px;
+      background: #2a2a3d;
+      color: #fff;
+      text-align: center;
+    }
 
-        button {
-            width: 100%;
-            padding: 10px;
-            font-size: 1rem;
-            font-weight: bold;
-            color: #fff;
-            background: #4caf50;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
+    input:focus {
+      outline: none;
+      border-color: #4caf50;
+    }
 
-        button:hover {
-            background: #388e3c;
-        }
+    .buttons {
+      display: flex;
+      gap: 10px;
+    }
 
-        #result {
-            margin-top: 20px;
-            font-size: 1.2rem;
-            color: #f4f4f9;
-            background: #222;
-            padding: 15px;
-            border-radius: 5px;
-        }
+    button {
+      flex: 1;
+      padding: 10px;
+      font-size: 1rem;
+      font-weight: bold;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
 
-        #result strong {
-            color: #4caf50;
-        }
-    </style>
+    .search-btn {
+      background: #4caf50;
+      color: white;
+    }
+
+    .search-btn:hover {
+      background: #388e3c;
+    }
+
+    .clear-btn {
+      background: #ff5252;
+      color: white;
+    }
+
+    .clear-btn:hover {
+      background: #c62828;
+    }
+
+    #result {
+      margin-top: 20px;
+      padding: 15px;
+      background: #222;
+      border-radius: 8px;
+      display: none;
+    }
+
+    .spinner {
+      border: 4px solid #eee;
+      border-top: 4px solid #4caf50;
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
+      animation: spin 1s linear infinite;
+      margin: 0 auto;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 1.5rem;
+      }
+
+      button {
+        font-size: 0.9rem;
+      }
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Fetch Your Details by DOB</h1>
-        <label for="dob">Enter DOB (dd/mm/yyyy):</label>
-        <label for="dob"> Note:Enter in // format only:</label>
-        <input type="text" id="dob" placeholder="Enter your Date of birth" onkeydown="checkEnter(event)">
-        <button onclick="fetchData()">Search</button>
-        <div id="result"></div>
+  <div class="container">
+    <h1>DOB Finder</h1>
+    <label for="dob">Enter DOB (dd/mm/yyyy):</label>
+    <input type="text" id="dob" placeholder="DD/MM/YYYY" maxlength="10" oninput="formatDOB(this)" onkeydown="checkEnter(event)">
+    <div class="buttons">
+      <button class="search-btn" onclick="fetchData()">Search</button>
+      <button class="clear-btn" onclick="clearResult()">Clear</button>
     </div>
+    <div id="result"></div>
+  </div>
 
-    <script>
-        const data = {
-            "20/10/1981": { name: "Naseema Begum", location: "Tadbun", father_name: "Syed Abdul Rab Rabbani"},
-            "14/04/1982": { name: "Syed Abdul Haq Haqaqani", location: "Falaknuma",  father_name: "Syed Abdul Rab Rabbani"},
-            "19/01/1985": { name: "Amatul Aleem", location: "Rajendernagar",  father_name: "Syed Abdul Rab Rabbani"},
-            "19/01/1986": { name: "Amatul Azeem", location: "Pahadi Shareef",  father_name: "Syed Abdul Rab Rabbani"},
-            "20/07/1987": { name: "Nazema Begum", location: "Pisal Banda",  father_name: "Syed Abdul Rab Rabbani"},
-            "23/12/1988": { name: "Syed Abdul Subhan Subhani", location: "Jeddah",  father_name: "Syed Abdul Rab Rabbani"},
-            "30/09/1992": { name: "Amatul Kareem", location: "Sahethnagar",  father_name: "Syed Abdul Rab Rabbani"},
-            "25/03/1995": { name: "Amatul Hakeem", location: "Tadbun",  father_name: "Syed Abdul Rab Rabbani"},
-            "07/04/1996": { name: "Syed Abdul Samad", location: "Falaknuma",  father_name: "Syed Abdul Rab Rabbani" }, 
-            "22/03/2007": { name: "SYED ABDUL HAKEEM", location: "Tadbun", father_name: "Syed Ishaque", mother_name: "Naseema Begum"},
-            "18/07/2008": { name: "MOHAMMED SHAHID", location: "Rajendernagar", father_name: " 8" },
-            "18/02/2014": { name: "SYED ABDUL HAFEEZ", location: "Tadbun" ,  father_name: "Syed Ishaque"},
-            "04/09/2003": { name: "MOHAMMED SAJID", location: "Tigal Kunta",  father_name: "Akhlaq Ahmed" },
-            "18/05/2006": { name: "MOHAMMED SAQIB", location: "Tigal Kunta" , father_name: "Akhlaq Ahmed"},
-            "18/07/2008": { name: "MOHAMMED SHAHID", location: "Tigal Kunta", father_name: "Akhlaq Ahmed" },
-            "18/10/2018": { name: "MOHAMMED ZAHID", location: "Tigal Kunta", father_name: "Akhlaq Ahmed" },
-            "13/01/2020": { name: "MOHAMMED SADIQ ANAS", location: "Tigal Kunta", father_name: "Akhlaq Ahmed" },
-            "10/09/2011": { name: "AMATULLAH HAFSA", location: "Rajendernagar", father_name: "Abdul Khaliq" },
-            "24/08/2014": { name: "ABUBAKER SIDDIQUE", location: "Rajendernagar", father_name: "Abdul Khaliq" },
-            "18/08/2016": { name: "AMATULLAH SAJIDA ASMA", location: "Rajendernagar", father_name: "Abdul Khaliq" },
-            "26/11/2019": { name: "AMATULLAH SARA", location: "Rajendernagar", father_name: "Abdul Khaliq" },
-            "04/01/2019": { name: "ABDUL ALEEM", location: "Pahadi sharif", father_name: "Abdul Gaffor" },
-            "28/03/2023": { name: "AMENA TAHURA", location: "Pahadi sharif", father_name: "Abdul Gaffor" }, 
-            "19/05/2009": { name: "ABDUL MALIK KHAN", location: "Kanchan Bagh", father_name: "Akram Khan" },
-            "10/04/2011": { name: "NADIRA KHANAM", location: "Kanchan Bagh", father_name: "Akram Khan" }, 
-            "06/12/2013": { name: "ABDUL MANNAN KHAN", location: "Kanchan Bagh", father_name: "Akram Khan" },
-            "11/04/2016": { name: "ABDUL HANNAN KHAN", location: "Kanchan Bagh", father_name: "Akram Khan" },
-            "23/06/2022": { name: "NAIRA KHANAM", location: "Kanchan Bagh", father_name: "Akram Khan" },
-            "08/04/2014": { name: "MOHAMMED HAMZA ZAKIR", location: "Saheth nagar", father_name: "Mohammed Zakiruddin" },
-            "07/03/2017": { name: "MOHAMMED UMAR ZAKIR", location: "Saheth nagar", father_name: "Mohammed Zakiruddin" },
-            "14/03/2019": { name: "SUMAYYA ZAKIR", location: "Saheth nagar", father_name: "Mohammed Zakiruddin" },
-            "16/10/2019": { name: "ABDUL WAHID", location: "Tadbun", father_name: "Abdul Wahab" },
-            "13/05/2021": { name: "KHADIJA FATHIMA", location: "Tadbun", father_name: "Abdul Wahab" },
-            "10/11/2024": { name: "ABDUL WAJID", location: "Tadbun", father_name: "Abdul Wahab" },
-            "23/08/2013": { name: "AMATUR RAHEEM MARYAM", location: "Falaknuma", father_name: " Syed Abdul Haq Haqqani" },
-            "16/06/2016": { name: "SYED ABDULLAH", location: "Falaknuma", father_name: " Syed Abdul Haq Haqqani" },
-            "03/08/2020": { name: "SYED MOHAMMED SULEMAN", location: "Falaknuma", father_name: " Syed Abdul Haq Haqqani" },
-            "08/01/2024": { name: "ABDUL RAB AHMED", location: "Falaknuma", father_name: " Syed Abdul Haq Haqqani" },
-            "05/07/2023": { name: "AMATULLAH ANABIYA", location: "Jeddah", father_name: " Syed Abdul Subhan Subhani" },
-            "09/01/2022": { name: "AMATULLAH AYESHA", location: "Falaknuma", father_name: " Syed Abdul Rahman Rahmani" },
-            "01/10/2023": { name: "SYED ABDUL AHAD", location: "Falaknuma", father_name: " Syed Abdul Samad " }
-        };
+  <script>
+    const data = {
+      "20/10/1981": { name: "Naseema Begum", location: "Tadbun", father_name: "Syed Abdul Rab Rabbani"},
+      "14/04/1982": { name: "Syed Abdul Haq Haqaqani", location: "Falaknuma", father_name: "Syed Abdul Rab Rabbani"},
+      "19/01/1985": { name: "Amatul Aleem", location: "Rajendernagar", father_name: "Syed Abdul Rab Rabbani"},
+      // ... (include your full data object here)
+    };
 
-        // Function to handle button click
-       function fetchData() {
-    const dob = document.getElementById("dob").value.trim();
-    const result = document.getElementById("result");
+    function fetchData() {
+      const dob = document.getElementById("dob").value.trim();
+      const result = document.getElementById("result");
 
-    if (data[dob]) {
-        let additionalInfo = '';
-        // Check for and add additional fields if they exist
-        if (data[dob].father_name) {
-            additionalInfo += `<div><strong>Father's Name:</strong> ${data[dob].father_name}</div>`;
+      result.style.display = "block";
+      result.innerHTML = '<div class="spinner"></div>';
+
+      setTimeout(() => {
+        if (data[dob]) {
+          const { name, location, father_name, mother_name } = data[dob];
+          result.innerHTML = `
+            <strong>Assalamualaikum!</strong><br><br>
+            <div><strong>Your Name:</strong> ${name}</div>
+            <div><strong>Location:</strong> ${location}</div>
+            ${father_name ? `<div><strong>Father's Name:</strong> ${father_name}</div>` : ""}
+            ${mother_name ? `<div><strong>Mother's Name:</strong> ${mother_name}</div>` : ""}
+          `;
+        } else {
+          result.innerHTML = `<strong style="color: #ff5c5c;">No record found for the entered DOB.</strong>`;
         }
-        // You can add more fields like this if necessary.
-   
-        result.innerHTML = `
-            <strong>Assalamualaikum!</strong><br>
-            <div style="margin-top: 10px;">
-                <div><strong>Your Name is:</strong> ${data[dob].name}</div>
-                <div><strong>Your Location is:</strong> ${data[dob].location}</div>
-                ${additionalInfo} <!-- Display additional info if present -->
-            </div>
-        `;
-    } else {
-        result.innerHTML = `<strong>No data found</strong> for the entered DOB.`;
+      }, 800); // simulate delay
     }
-}
 
-        // Function to handle Enter key press
-        function checkEnter(event) {
-            if (event.key === "Enter") {
-                fetchData();
-            }
-        }
-    </script>
+    function checkEnter(event) {
+      if (event.key === "Enter") {
+        fetchData();
+      }
+    }
+
+    function clearResult() {
+      document.getElementById("dob").value = "";
+      const result = document.getElementById("result");
+      result.innerHTML = "";
+      result.style.display = "none";
+    }
+
+    function formatDOB(input) {
+      let value = input.value.replace(/\D/g, "").slice(0, 8);
+      if (value.length >= 5) {
+        input.value = `${value.slice(0,2)}/${value.slice(2,4)}/${value.slice(4)}`;
+      } else if (value.length >= 3) {
+        input.value = `${value.slice(0,2)}/${value.slice(2)}`;
+      } else {
+        input.value = value;
+      }
+    }
+  </script>
 </body>
 </html>
