@@ -123,46 +123,421 @@
 
   <script>
     const data = {
-      "22/03/2007": {
-        name: "Syed Abdul Hakeem",
-        location: "Tadbun",
-        father_name: "Syed Ishaque",
-        mother_name: "Naseema Begum",
-        gender: "Male",
-        mobile: "9966270012",
-        signature: "Ahakeem",
-        //photo: "https://via.placeholder.com/100"
-      },
-      "14/02/2014": {
-        name: "Syed Abdul Hafeez",
-        location: "Tadbun",
-        father_name: "Syed Ishaque",
-        mother_name: "Naseema Begum",
-        gender: "Male",
-        mobile: "9100271633",
-        signature: "",
-        photo: ""
-      },
-      "04/09/2003": {
-        name: "Mohammed Sajid",
-        location: "Dubai",
-        father_name: "Akhlaq Ahmed",
-        mother_name: "Amatul Aziz",
-        gender: "Male",
-        mobile: "703277686",
-        signature: "",
-        photo: ""
-      },
-      "18/05/2006": {
-        name: "Mohammed Saqib",
-        location: "Tigal Kunta",
-        father_name: "Akhlaq Ahmed",
-        mother_name: "Amatul Aziz",
-        gender: "Male",
-        mobile: "7799996222",
-        signature: "",
-        photo: ""
-      }
+      // "22/03/2007": {
+      //   name: "Syed Abdul Hakeem",
+      //   location: "Tadbun",
+      //   father_name: "Syed Ishaque",
+      //   mother_name: "Naseema Begum",
+      //   gender: "Male",
+      //   mobile: "9966270012",
+      //   signature: "Ahakeem",
+      //   //photo: "https://via.placeholder.com/100"
+      // },
+      // "14/02/2014": {
+      //   name: "Syed Abdul Hafeez",
+      //   location: "Tadbun",
+      //   father_name: "Syed Ishaque",
+      //   mother_name: "Naseema Begum",
+      //   gender: "Male",
+      //   mobile: "9100271633",
+      //   signature: "",
+      //   photo: ""
+      // },
+      // "04/09/2003": {
+      //   name: "Mohammed Sajid",
+      //   location: "Dubai",
+      //   father_name: "Akhlaq Ahmed",
+      //   mother_name: "Amatul Aziz",
+      //   gender: "Male",
+      //   mobile: "703277686",
+      //   signature: "",
+      //   photo: ""
+      // },
+      // "18/05/2006": {
+      //   name: "Mohammed Saqib",
+      //   location: "Tigal Kunta",
+      //   father_name: "Akhlaq Ahmed",
+      //   mother_name: "Amatul Aziz",
+      //   gender: "Male",
+      //   mobile: "7799996222",
+      //   signature: "",
+      //   photo: ""
+      // }
+      const children = {
+  "04/09/2003": {
+    name: "Mohammed Sajid",
+    location: "",
+    father_name: "",
+    mother_name: "",
+    gender: "",
+    mobile: "",
+    signature: "",
+    photo: ""
+  },
+
+  "18/05/2006": {
+    name: "Mohammed Saqib",
+    location: "",
+    father_name: "",
+    mother_name: "",
+    gender: "",
+    mobile: "",
+    signature: "",
+    photo: ""
+  },
+
+  "22/03/2007": {
+    name: "Syed Abdul Hakeem",
+    location: "",
+    father_name: "",
+    mother_name: "",
+    gender: "",
+    mobile: "",
+    signature: "",
+    photo: ""
+  },
+
+  "18/07/2008": {
+    name: "Mohammed Shahid",
+    location: "",
+    father_name: "",
+    mother_name: "",
+    gender: "",
+    mobile: "",
+    signature: "",
+    photo: ""
+  },
+
+  "19/05/2009": {
+    name: "Abdul Malik Khan",
+    location: "",
+    father_name: "",
+    mother_name: "",
+    gender: "",
+    mobile: "",
+    signature: "",
+    photo: ""
+  },
+
+  "10/04/2011": {
+    name: "Nadera Khanam",
+    location: "",
+    father_name: "",
+    mother_name: "",
+    gender: "",
+    mobile: "",
+    signature: "",
+    photo: ""
+  },
+
+  "10/09/2011": {
+    name: "Amatullah Hafsa",
+    location: "",
+    father_name: "",
+    mother_name: "",
+    gender: "",
+    mobile: "",
+    signature: "",
+    photo: ""
+  },
+
+  "23/08/2013": {
+    name: "Amatul Raheem Maryam",
+    location: "",
+    father_name: "",
+    mother_name: "",
+    gender: "",
+    mobile: "",
+    signature: "",
+    photo: ""
+  },
+
+  "06/12/2013": {
+    name: "Abdul Mannan Khan",
+    location: "",
+    father_name: "",
+    mother_name: "",
+    gender: "",
+    mobile: "",
+    signature: "",
+    photo: ""
+  },
+
+  "18/02/2014": {
+    name: "Syed Abdul Hafeez",
+    location: "",
+    father_name: "",
+    mother_name: "",
+    gender: "",
+    mobile: "",
+    signature: "",
+    photo: ""
+  },
+
+  "08/04/2014": {
+    name: "Mohammed Hamza Zakir",
+    location: "",
+    father_name: "",
+    mother_name: "",
+    gender: "",
+    mobile: "",
+    signature: "",
+    photo: ""
+  },
+
+  "18/08/2014": {
+    name: "Syed Abubaker Siddique",
+    location: "",
+    father_name: "",
+    mother_name: "",
+    gender: "",
+    mobile: "",
+    signature: "",
+    photo: ""
+  },
+
+  "11/04/2016": {
+    name: "Abdul Hannan Khan",
+    location: "",
+    father_name: "",
+    mother_name: "",
+    gender: "",
+    mobile: "",
+    signature: "",
+    photo: ""
+  },
+
+  "16/06/2016": {
+    name: "Syed Abdullah",
+    location: "",
+    father_name: "",
+    mother_name: "",
+    gender: "",
+    mobile: "",
+    signature: "",
+    photo: ""
+  },
+
+  "22/08/2016": {
+    name: "Amatullah Sajida Asma",
+    location: "",
+    father_name: "",
+    mother_name: "",
+    gender: "",
+    mobile: "",
+    signature: "",
+    photo: ""
+  },
+
+  "17/03/2017": {
+    name: "Mohammed Umar Zakir",
+    location: "",
+    father_name: "",
+    mother_name: "",
+    gender: "",
+    mobile: "",
+    signature: "",
+    photo: ""
+  },
+
+  "18/10/2017": {
+    name: "Mohammed Zahid",
+    location: "",
+    father_name: "",
+    mother_name: "",
+    gender: "",
+    mobile: "",
+    signature: "",
+    photo: ""
+  },
+
+  "04/01/2019": {
+    name: "Abdul Aleem",
+    location: "",
+    father_name: "",
+    mother_name: "",
+    gender: "",
+    mobile: "",
+    signature: "",
+    photo: ""
+  },
+
+  "14/03/2019": {
+    name: "Sumayya Zakir",
+    location: "",
+    father_name: "",
+    mother_name: "",
+    gender: "",
+    mobile: "",
+    signature: "",
+    photo: ""
+  },
+
+  "16/10/2019": {
+    name: "Abdul Wahid",
+    location: "",
+    father_name: "",
+    mother_name: "",
+    gender: "",
+    mobile: "",
+    signature: "",
+    photo: ""
+  },
+
+  "26/11/2019": {
+    name: "Amatullah Sara",
+    location: "",
+    father_name: "",
+    mother_name: "",
+    gender: "",
+    mobile: "",
+    signature: "",
+    photo: ""
+  },
+
+  "13/01/2020": {
+    name: "Mohammed Sadiq Anas",
+    location: "",
+    father_name: "",
+    mother_name: "",
+    gender: "",
+    mobile: "",
+    signature: "",
+    photo: ""
+  },
+
+  "03/08/2020": {
+    name: "Syed Mohd Suleman",
+    location: "",
+    father_name: "",
+    mother_name: "",
+    gender: "",
+    mobile: "",
+    signature: "",
+    photo: ""
+  },
+
+  "13/05/2021": {
+    name: "Khadija Fathima",
+    location: "",
+    father_name: "",
+    mother_name: "",
+    gender: "",
+    mobile: "",
+    signature: "",
+    photo: ""
+  },
+
+  "09/01/2022": {
+    name: "Amatullah Ayesha",
+    location: "",
+    father_name: "",
+    mother_name: "",
+    gender: "",
+    mobile: "",
+    signature: "",
+    photo: ""
+  },
+
+  "23/06/2022": {
+    name: "Nayra Khanam",
+    location: "",
+    father_name: "",
+    mother_name: "",
+    gender: "",
+    mobile: "",
+    signature: "",
+    photo: ""
+  },
+
+  "28/03/2023": {
+    name: "Amena Tahura",
+    location: "",
+    father_name: "",
+    mother_name: "",
+    gender: "",
+    mobile: "",
+    signature: "",
+    photo: ""
+  },
+
+  "05/07/2023": {
+    name: "Amatullah Anabiya",
+    location: "",
+    father_name: "",
+    mother_name: "",
+    gender: "",
+    mobile: "",
+    signature: "",
+    photo: ""
+  },
+
+  "01/10/2023": {
+    name: "Syed Abdul Ahad",
+    location: "",
+    father_name: "",
+    mother_name: "",
+    gender: "",
+    mobile: "",
+    signature: "",
+    photo: ""
+  },
+
+  "08/01/2024": {
+    name: "Abdul Rab Ahmed",
+    location: "",
+    father_name: "",
+    mother_name: "",
+    gender: "",
+    mobile: "",
+    signature: "",
+    photo: ""
+  },
+
+  "10/11/2024": {
+    name: "Abdul Wajid",
+    location: "",
+    father_name: "",
+    mother_name: "",
+    gender: "",
+    mobile: "",
+    signature: "",
+    photo: ""
+  },
+
+  "14/10/2025": {
+    name: "Amatullah Rushda",
+    location: "",
+    father_name: "",
+    mother_name: "",
+    gender: "",
+    mobile: "",
+    signature: "",
+    photo: ""
+  },
+
+  "29/10/2025": {
+    name: "Syed Abdul Qawi",
+    location: "",
+    father_name: "",
+    mother_name: "",
+    gender: "",
+    mobile: "",
+    signature: "",
+    photo: ""
+  },
+
+  "26/01/2026": {
+    name: "Asiya Noorain",
+    location: "",
+    father_name: "",
+    mother_name: "",
+    gender: "",
+    mobile: "",
+    signature: "",
+    photo: ""
+  }
+};
       // Add more family members here
     };
 
